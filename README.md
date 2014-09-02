@@ -1,0 +1,2 @@
+Apple-document-simple-stranslation
+==================================
