@@ -1,5 +1,5 @@
 https://developer.apple.com/library/mac/documentation/Cocoa/Reference/SBApplication_Class/index.html#//apple_ref/occ/cl/SBApplication
-
+https://developer.apple.com/library/mac/documentation/Cocoa/Reference/SBApplication_Class/
 ##SBApplication
 
 ``SBApplication``类为Objective-C程序提供一个向脚本程序发送和接收Apple events的自动化机制。因此，Objective-C程序可以控制脚本程序并相互交换数据。Scripting Bridge将Apple event和Cocoa objects的数据类型联系起来。
