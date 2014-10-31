@@ -77,5 +77,27 @@ AppleScript依赖于开发人员开发脚本化App。但是，一中被称为GUI
 
 ###指定脚本术语
 
-脚本App提供一个脚本字典描述他们支持的脚本术语。字典指定App支持的命令和objects，以及其他AppleScript或app本身使用的信息，或者被其他app和脚本想要使用。由该希望利用该应用程序的脚本化的其它应用程序或脚本对象的应用程序支持，以及其它信息，用于通过AppleScript的或应用程序本身，以及可能的。有关设计的脚本术语的信息，请参见技术说明TN2106，脚本界面指南。
+脚本App提供一个字典描述他们的脚本术语。字典指定App支持的命令和objects，以及AppleScript或app本身使用的其他信息，或者被其他app和脚本想要使用的其他信息。有关设计脚本术语的信息，请参见 Technical Note TN2106, [Scripting Interface Guidelines]()。
 
+用户通常检查字典来了解如何在脚本中控制App。你可以用Script Editor（脚本编辑器）来显示脚本化App或脚本扩展的字典，像[Displaying Scripting Dictionaries]()描述的那样。
+
+这种字典有三种格式：
+- sdef:“sdef”是“脚本定义”的简称。这种基于XML的格式是下面描述的两种格式的超集，并支持新的和改进的功能。之前的OS X v10.4版本，你不能直接在App中使用sdef，你可以使用*sdp*工具将sdef转换其他格式。从OS X v10.4开始，Cocoa应用程序可以直接使用sdef格式，在[Cocoa Scripting Guide]()的[Preparing a Scripting Definition File]()章节和在[Cocoa Scripting Guide]()的其他章节中有相关信息。
+
+	在OS X v10.5（Leopard）中，Carbon和Cocoa应用程序都可以只支持sdef格式的字典。你可以在[Foundation Release Notes for OS X ]()的Scripting段中查阅运行在Leopard上的Cocoa应用程序使用sdef的更多改进。
+	
+	关于sdef格式的文档，包括更改历史，查看sdef(5)手册页。[Scripting Interface Guidelines]()也包括使用sdefs的相关信息。有关sdp工具的文档，请参阅手册页sdp(1)，以及[Cocoa Scripting Guide.]()中的[Evolution of Cocoa Scriptability Information]()。有关如何使用sdef文件的示例，请参阅Sketch sample application。对于其他示例，请参见[Support for Cocoa Applications]()中列出的示例代码项目。
+	
+- script suite:这是Cocoa应用程序使用的原始格式，它仍然支持向后兼容。script suite包含了一对information property list(plist)文件，提供App使用的信息和AppleScript信息。一个应用程序可以包含多个script suite。
+
+	相关文档，请参阅[Cocoa Scripting Guide]()中的[Script Suite and Script Terminology Files]()。
+- aete:这是原来的字典格式，Carbon应用程序仍在使用。名字来源于Resource Manager resource type。在10.4及更早版本，aete格式应用广泛，支持Carbon和Cocoa应用程序，提供了字典脚本语言可以使用的字典，而无需启动应用程序。
+
+###什么App应该脚本化
+###接收Apple Events
+
+脚本化App通常响应一组常用命令，如获取数据，设置数据集，删除和保存，以及为特定应用程序的操作指定的命令。命令使用在框架或App头文件中定义的常量来指定Apple events。为了支持某个命令，App使用Apple Event Manager注册事件处理程序来处理接收到的命令指代的Apple event。Apple Event Manager调度接收到的事件给注册的相应处理程序。
+
+Note：对于Cocoa App，命令是动态注册的，因此开发者一般不需要直接注册apple event处理程序。
+
+有关创建和注册事件处理程序的更多信息，请参阅在*Apple Events Programming Guide*中的*Apple Event Dispatching and Responding to Apple Events*。
