@@ -101,3 +101,20 @@ AppleScript依赖于开发人员开发脚本化App。但是，一中被称为GUI
 Note：对于Cocoa App，命令是动态注册的，因此开发者一般不需要直接注册apple event处理程序。
 
 有关创建和注册事件处理程序的更多信息，请参阅在*Apple Events Programming Guide*中的*Apple Event Dispatching and Responding to Apple Events*。
+
+###App中可以跟AppleScript交互的类
+###记录
+###创建和发送Apple Events
+###执行脚本
+###脚本化App相关信息总结
+###创建脚本化App的OS X支持
+####支持Carbon App
+####支持Cocoa App
+
+##Scripting Bridge
+
+Scripting Bridge，随OS X 10.5推出，提供为脚本化App创建Objective-C接口的自动化机制。这使得Cocoa应用程序和其他的Objective-C代码编写的程序可以方便的使用Objective-C原生语法来有效地访问脚本化App。其他一些脚本语言，如Ruby和Python，也可以使用Scripting Bridge（他们也有开源访问脚本化App的bridges，RubyOSA和PY-appscript）。欲了解更多信息，请参见*Ruby and Python Programming Topics for OS X*.
+
+要使用Scripting Bridge，将Scripting Bridge框架添加到应用程序项目中，然后使用命令行工具生成目标脚本化App的接口文件。然后在你的应用程序代码中获得目标脚本化App的应用程序类病发送Objective-C消息。
+
+详细内容参见[Scripting Bridge Programming Guide]()和[Scripting Bridge Framework Reference]()。相关示例，参见*ScriptingBridgeFinder*。
